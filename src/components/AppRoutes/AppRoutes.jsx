@@ -6,32 +6,33 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import {paths} from "../../utils/conts";
 
 function AppRoutes(props) {
   return (
     <Routes>
       <Route
-        path={'/'}
+        path={paths.main}
         element={<Main />}
       />
       <Route
-        path={'/movies'}
+        path={paths.movies}
         element={<Movies />}
       />
       <Route
-        path={'/saved-movies'}
+        path={paths.savedMovies}
         element={<SavedMovies />}
       />
       <Route
-        path={'/profile'}
+        path={paths.profile}
         element={<Profile />}
       />
       <Route
-        path={'/signin'}
+        path={paths.signin}
         element={<Login />}
       />
       <Route
-        path={'/signup'}
+        path={paths.signup}
         element={<Register />}
       />
     </Routes>
