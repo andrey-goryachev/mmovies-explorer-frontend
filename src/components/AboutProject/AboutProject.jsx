@@ -4,7 +4,7 @@ import SectionHeader from "../SectionHeader/SectionHeader";
 
 function AboutProject(props) {
   return (
-    <section className={'about-project'}>
+    <section id={'about-project'} className={'about-project'}>
       <SectionHeader text={'О проекте'} />
       <ul className={'about-project__descriptions'}>
         <li className={'about-project__description'}>
