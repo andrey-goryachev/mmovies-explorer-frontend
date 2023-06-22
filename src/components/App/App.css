@@ -2,6 +2,25 @@
     --color-vivid-green: #2BE080;
 }
 
+a {
+    display: block;
+    text-decoration: none;
+    transition: opacity .4s ease;
+}
+
+a:visited {
+    color: #000;
+}
+
+a:hover {
+    cursor: pointer;
+    opacity: .5;
+}
+
+a:focus-visible {
+    outline: none;
+}
+
 .App {
     padding: 0;
     margin: 0;
