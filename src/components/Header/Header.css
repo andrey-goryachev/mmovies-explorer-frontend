@@ -15,27 +15,11 @@
 }
 
 .header__link {
-    /*display: block;*/
-    /*text-decoration: none;*/
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
     line-height: 18px;
-    /*transition: opacity .4s ease;*/
 }
-
-/*.header__link:visited {*/
-/*    color: #000;*/
-/*}*/
-
-/*.header__link:hover {*/
-/*    cursor: pointer;*/
-/*    opacity: .5;*/
-/*}*/
-
-/*.header__link:focus-visible {*/
-/*    outline: none;*/
-/*}*/
 
 
 .header__link_place_login {
