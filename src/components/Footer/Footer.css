@@ -42,10 +42,9 @@
 
 @media screen and (max-width: 460px) {
     .footer {
-        /*padding-top: 60px;*/
+        padding-top: 76px;
         padding-right: 10px;
         padding-left: 10px;
-        /*background-color: #FFF;*/
     }
 
     .footer__header {
