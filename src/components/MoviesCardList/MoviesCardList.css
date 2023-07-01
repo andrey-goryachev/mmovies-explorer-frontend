@@ -35,7 +35,7 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 820px) {
     .movies__list {
         padding-top: 73px;
         padding-left: 30px;
