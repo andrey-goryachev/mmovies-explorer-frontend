@@ -1,9 +1,17 @@
 import React from 'react';
 import './SavedMovies.css'
+import SearchForm from "../SearchForm/SearchForm";
+import {movies} from "../../utils/conts";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function SavedMovies(props) {
+function SavedMovies() {
+  const savedMovies = movies.filter(movie => movie.checked === true)
+
   return (
-    <div>SavedMovies</div>
+    <section>
+      <SearchForm/>
+      <MoviesCardList movies={savedMovies} />
+    </section>
   );
 }
 

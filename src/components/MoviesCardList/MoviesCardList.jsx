@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
 import './MoviesCardList.css'
 import MoviesCard from "../MoviesCard/MoviesCard";
-import {movies} from "../../utils/conts";
+// import {movies} from "../../utils/conts";
 
-function MoviesCardList(props) {
+function MoviesCardList( {movies} ) {
   const [width, setWidth] = React.useState(window.innerWidth);
   const [newMoviesList, setNewMoviesList] = React.useState([])
+
   const breakpointTab = 768;
   const breakpointMobile = 460;
 

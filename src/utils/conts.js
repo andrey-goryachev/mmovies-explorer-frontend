@@ -116,7 +116,9 @@ const movies = [
   },
 ]
 
+
+
 export {
   paths,
-  movies
+  movies,
 }

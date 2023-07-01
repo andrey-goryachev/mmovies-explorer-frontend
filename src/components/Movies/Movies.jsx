@@ -1,12 +1,13 @@
 import React from 'react';
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import {movies} from "../../utils/conts";
 
-function Movies(props) {
+function Movies() {
   return (
     <section>
       <SearchForm/>
-      <MoviesCardList/>
+      <MoviesCardList movies={movies}/>
     </section>
   );
 }

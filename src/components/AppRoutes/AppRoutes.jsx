@@ -8,16 +8,16 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import {paths} from "../../utils/conts";
 
-function AppRoutes(props) {
+function AppRoutes({movies}) {
   return (
     <Routes>
       <Route
         path={paths.main}
-        element={<Main />}
+        element={<Main/>}
       />
       <Route
         path={paths.movies}
-        element={<Movies />}
+        element={<Movies/>}
       />
       <Route
         path={paths.savedMovies}
@@ -25,15 +25,15 @@ function AppRoutes(props) {
       />
       <Route
         path={paths.profile}
-        element={<Profile />}
+        element={<Profile/>}
       />
       <Route
         path={paths.signin}
-        element={<Login />}
+        element={<Login/>}
       />
       <Route
         path={paths.signup}
-        element={<Register />}
+        element={<Register/>}
       />
     </Routes>
   );
