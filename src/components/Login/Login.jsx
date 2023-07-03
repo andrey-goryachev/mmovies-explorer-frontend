@@ -1,8 +1,11 @@
 import React from 'react';
 import './Login.css'
-function Login(props) {
+import Auth from "../Auth/Auth";
+function Login({ header, buttonText, isRegister }) {
   return (
-    <div>Login</div>
+    <section className={'login'}>
+      <Auth header={header} buttonText={buttonText} isRegister={isRegister}/>
+    </section>
   );
 }
 

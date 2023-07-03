@@ -1,8 +1,12 @@
 import React from 'react';
 import './Register.css'
-function Register(props) {
+import Auth from "../Auth/Auth";
+
+function Register( { header, buttonText, isRegister } ) {
   return (
-    <div>Register</div>
+    <section className={'register'}>
+      <Auth header={header} buttonText={buttonText} isRegister={isRegister}/>
+    </section>
   );
 }
 

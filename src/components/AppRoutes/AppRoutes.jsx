@@ -29,11 +29,15 @@ function AppRoutes({movies}) {
       />
       <Route
         path={paths.signin}
-        element={<Login/>}
+        element={<Login header={'Добро пожаловать!'} buttonText={'Зарегистрироваться'} isRegister={true}/>}
       />
       <Route
         path={paths.signup}
-        element={<Register/>}
+        element={<Register header={'Рады видеть!'} buttonText={'Войти'} isRegister={false}/>}
+      />
+      <Route
+        path={'*'}
+        element={}
       />
     </Routes>
   );
