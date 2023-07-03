@@ -7,6 +7,7 @@ import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import {paths} from "../../utils/conts";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 function AppRoutes({movies}) {
   return (
@@ -37,7 +38,7 @@ function AppRoutes({movies}) {
       />
       <Route
         path={'*'}
-        element={}
+        element={<ErrorPage />}
       />
     </Routes>
   );

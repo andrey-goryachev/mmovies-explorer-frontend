@@ -21,6 +21,15 @@ a:focus-visible {
     outline: none;
 }
 
+button {
+    transition: opacity .4s ease;
+}
+
+button:hover {
+    cursor: pointer;
+    opacity: .5;
+}
+
 .App {
     padding: 0;
     margin: 0;
