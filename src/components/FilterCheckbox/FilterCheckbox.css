@@ -1,11 +1,13 @@
 .label-checkbox {
-    padding-top: 27px;
+    padding-top: 26px;
     padding-right: 6px;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 12px;
 }
+
 
 .checkbox {
     position: absolute;
@@ -22,6 +24,12 @@
     height: 20px;
     border-radius: 16px;
     box-shadow: 0 4px 4px rgba(50, 50, 71, 0.08), 0 4px 8px rgba(50, 50, 71, 0.06);
+    transition: opacity .4s ease;
+}
+
+.visible-checkbox:hover {
+    cursor: pointer;
+    opacity: .3;
 }
 
 .visible-checkbox::before {
@@ -59,6 +67,12 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
+    transition: opacity .4s ease;
+}
+
+.label-checkbox__text:hover {
+    cursor: pointer;
+    opacity: .3;
 }
 
 @media screen and (max-width: 460px) {

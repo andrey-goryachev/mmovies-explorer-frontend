@@ -7,22 +7,13 @@
     justify-content: space-between;
 }
 
-/*.header__nav {*/
-/*    margin-left: 44px;*/
-/*    display: flex;*/
-/*    gap: 16px;*/
-/*    flex-grow: 1;*/
-/*}*/
+.header__button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
 
-/*.header__link {*/
-/*    font-style: normal;*/
-/*    font-weight: 400;*/
-/*    font-size: 13px;*/
-/*    line-height: 18px;*/
-/*}*/
-
-
-.header__link_place_login {
+.header__button_place_login {
     display: block;
     min-height: 32px;
     font-style: normal;
@@ -32,17 +23,7 @@
     text-align: center;
 }
 
-/*.header__link_place_profile-info {*/
-/*    display: flex;*/
-/*    gap: 17px;*/
-/*    align-items: center;*/
-/*    font-style: normal;*/
-/*    font-weight: 500;*/
-/*    font-size: 14px;*/
-/*    line-height: 16px;*/
-/*}*/
-
-.header__link_style_button {
+.header__button_style_button {
     padding: 0 20px 0;
     background-color: var(--color-vivid-green);
     border-radius: 3px;
@@ -52,21 +33,6 @@
     display: flex;
     gap: 30px;
 }
-
-/*.header__profile-img {*/
-/*    width: 26px;*/
-/*    height: 30px;*/
-/*    background: #f9f9f9 url("../../images/account.svg") no-repeat center center;*/
-/*    border-radius: 4px;*/
-/*}*/
-
-/*.header__link_type_burger {*/
-/*    display: none;*/
-/*}*/
-
-/*.header__profile-img_burger {*/
-/*    display: none;*/
-/*}*/
 
 @media screen and (max-width: 768px) {
     .header {
@@ -78,11 +44,11 @@
         display: none;
     }
 
-    .header__link_place_profile-info {
+    .header__button_place_profile-info {
         display: none;
     }
 
-    .header__link_type_burger {
+    .header__button_type_burger {
         display: flex;
         min-width: 44px;
         min-height: 44px;
@@ -104,7 +70,7 @@
         padding-right: 14px;
     }
 
-    .header__link {
+    .header__button {
         font-weight: 500;
     }
 
@@ -112,14 +78,14 @@
         gap: 14px;
     }
 
-    .header__link_place_login {
+    .header__button_place_login {
         display: block;
         min-height: 26px;
         font-size: 10px;
         line-height: 26px;
     }
 
-    .header__link_style_button {
+    .header__button_style_button {
         padding-left: 12px;
         padding-right: 12px;
     }

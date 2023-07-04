@@ -1,5 +1,10 @@
 .nav-tab {
     margin-top: 151px;
+}
+
+.nav-tab__list {
+    list-style: none;
+    padding: 0;
     display: flex;
     gap: 10px;
     justify-content: center;
@@ -39,6 +44,9 @@
 @media screen and (max-width: 460px) {
     .nav-tab {
         margin-top: 212px;
+    }
+
+    .nav-tab__list {
         gap: 6px;
     }
 

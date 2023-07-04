@@ -10,7 +10,7 @@
 }
 
 .error-page__container-text {
-    margin: 0 auto;
+    margin: auto;
 }
 
 .error-page__header {
@@ -43,10 +43,17 @@
     outline: none;
 }
 
+@media screen and (max-width: 768px) {
+    .error-page {
+        padding-top: 220px;
+        padding-bottom: 220px;
+    }
+}
+
 @media screen and (max-width: 460px) {
     .error-page {
-        padding-top: 37px;
-        padding-bottom: 37px;
+        padding-top: 50px;
+        padding-bottom: 30px;
     }
 
     .error-page__header {

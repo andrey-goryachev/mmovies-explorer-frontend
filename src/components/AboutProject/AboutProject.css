@@ -41,6 +41,9 @@
 }
 
 .about-project__part-schema {
+    display: block;
+    padding: 0;
+    margin: 0;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;

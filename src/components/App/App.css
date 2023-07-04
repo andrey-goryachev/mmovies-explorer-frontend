@@ -2,34 +2,6 @@
     --color-vivid-green: #2BE080;
 }
 
-a {
-    display: block;
-    text-decoration: none;
-    transition: opacity .4s ease;
-}
-
-a:visited {
-    color: #000;
-}
-
-a:hover {
-    cursor: pointer;
-    opacity: .5;
-}
-
-a:focus-visible {
-    outline: none;
-}
-
-button {
-    transition: opacity .4s ease;
-}
-
-button:hover {
-    cursor: pointer;
-    opacity: .5;
-}
-
 .App {
     padding: 0;
     margin: 0;
@@ -41,10 +13,14 @@ button:hover {
     text-rendering: optimizeLegibility;
 }
 
-.page__container {
+.page-container {
     max-width: 1280px;
     min-width: 320px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    /*height: 100vh;*/
+    /*min-height: 914px;*/
 }
 
 

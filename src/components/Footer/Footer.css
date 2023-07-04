@@ -1,6 +1,7 @@
 .footer {
     padding: 79px 70px 0 70px;
     background-color: #FAFAFA;
+    margin-top: auto;
 }
 
 .footer__header {
@@ -31,6 +32,10 @@
     list-style: none;
 }
 
+.footer__link {
+    color: #000;
+}
+
 @media screen and (max-width: 768px) {
     .footer {
         padding-top: 60px;
@@ -42,7 +47,7 @@
 
 @media screen and (max-width: 460px) {
     .footer {
-        padding-top: 76px;
+        padding-top: 5px;
         padding-right: 10px;
         padding-left: 10px;
     }

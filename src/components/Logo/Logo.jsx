@@ -8,7 +8,7 @@ function Logo() {
   return (
     <>
       <Link
-        className='logo'
+        className='link logo'
         to={paths.main}
       >
         <img

@@ -3,7 +3,7 @@ import './Footer.css'
 import {useLocation} from "react-router-dom";
 import {paths} from "../../utils/conts";
 
-function Footer(props) {
+function Footer() {
   let location = useLocation()
   let pathLocation = location.pathname
 
@@ -15,10 +15,10 @@ function Footer(props) {
           <p className="footer__text">© {new Date().getFullYear()}</p>
           <ul className={'footer__list'}>
             <li className={'footer__list-item'}>
-              <a className={'footer__link'} href="https://practicum.yandex.ru/">Яндекс.Практикум</a>
+              <a className={'link footer__link'} href="https://practicum.yandex.ru/" target={'_blank'} rel="noreferrer">Яндекс.Практикум</a>
             </li>
             <li className={'footer__list-item'}>
-              <a className={'footer__link'} href="https://github.com/andrey-goryachev">Github</a>
+              <a className={'link footer__link'} href="https://github.com/andrey-goryachev" target={'_blank'} rel="noreferrer">Github</a>
             </li>
           </ul>
         </div>

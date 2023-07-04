@@ -9,16 +9,17 @@ function Auth({header, buttonText, isRegister}) {
   return (
     <div className={'auth'}>
       <Logo/>
-      <h2 className={'auth__header'}>{header}</h2>
+      <h1 className={'auth__header'}>{header}</h1>
       <form className={'auth__form'} name={'login'}>
         <div className={'auth__inputs'}>
-          <AuthInput idTag={'username'}
-                     typeInput={'text'}
-                     placeholder={'Виталий'}
-                     labelText={'Имя'}
-                     required={true}
-                     minLength={3}
-          />
+          {isRegister && <AuthInput idTag={'username'}
+                      typeInput={'text'}
+                      placeholder={'Виталий'}
+                      labelText={'Имя'}
+                      required={true}
+                      minLength={3}
+                      maxLength={30}
+          />}
           <AuthInput idTag={'email'}
                      typeInput={'email'}
                      placeholder={'pochta@yandex.ru'}
@@ -31,30 +32,31 @@ function Auth({header, buttonText, isRegister}) {
                      labelText={'Пароль'}
                      required={true}
                      minLength={8}
+                     maxLength={30}
           />
         </div>
         <button
-          className='auth-form__button'
+          className='button auth__button'
           type='submit'
         >
           {buttonText}
         </button>
         {isRegister
           ?
-          <span className='auth-form__text'>
+          <span className='auth__text'>
             Уже зарегистрированы?{' '}
             <Link
-              className='auth-form__link'
+              className='link auth__link'
               to={paths.signup}
             >
               Войти
             </Link>
           </span>
           :
-          <span className='auth-form__text'>
+          <span className='auth__text'>
             Ещё не зарегистрированы?{' '}
             <Link
-              className='auth-form__link'
+              className='link auth__link'
               to={paths.signin}
             >
               Регистрация

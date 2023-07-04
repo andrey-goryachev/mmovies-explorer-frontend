@@ -2,7 +2,7 @@ import React from 'react';
 import './AboutProject.css'
 import SectionHeader from "../SectionHeader/SectionHeader";
 
-function AboutProject(props) {
+function AboutProject() {
   return (
     <section id={'about-project'} className={'about-project'}>
       <SectionHeader text={'О проекте'} />
@@ -17,10 +17,10 @@ function AboutProject(props) {
         </li>
       </ul>
       <div className={'about-project__schema'}>
-        <div className={'about-project__part-schema about-project__part-schema_color_green'}>1 неделя</div>
-        <div className={'about-project__part-schema about-project__part-schema_color_gray'}>4 недели</div>
-        <div className={'about-project__part-schema about-project__part-schema_type_description'}>Back-end</div>
-        <div className={'about-project__part-schema about-project__part-schema_type_description'}>Front-end</div>
+        <p className={'about-project__part-schema about-project__part-schema_color_green'}>1 неделя</p>
+        <p className={'about-project__part-schema about-project__part-schema_color_gray'}>4 недели</p>
+        <p className={'about-project__part-schema about-project__part-schema_type_description'}>Back-end</p>
+        <p className={'about-project__part-schema about-project__part-schema_type_description'}>Front-end</p>
       </div>
     </section>
   );

@@ -18,10 +18,12 @@ function App() {
 
   return (
     <div className={'App'}>
-      <div className={'page__container'}>
+      <div className={'page-container'}>
         <Header isPopupOpen={isPopupOpen} openPopup={openPopup} closePopup={closePopup}/>
-        <AppRoutes/>
-        <Popup isPopupOpen={isPopupOpen} openPopup={openPopup} closePopup={closePopup}/>
+        <main className={'main'}>
+          <AppRoutes/>
+          <Popup isPopupOpen={isPopupOpen} openPopup={openPopup} closePopup={closePopup}/>
+        </main>
         <Footer/>
       </div>
     </div>

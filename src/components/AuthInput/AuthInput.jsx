@@ -7,6 +7,7 @@ function AuthInput({
                      placeholder,
                      typeInput,
                      minLength,
+                     maxLength,
                      required
                    }) {
   const [errorInput, setErrorInput] = useState('')
@@ -34,6 +35,7 @@ function AuthInput({
              ref={refInput}
              onChange={validationInput}
              minLength={minLength}
+             maxLength={maxLength}
       />
       <div className={'auth__error-validation'}>{errorInput ? errorInput : ''}</div>
     </div>

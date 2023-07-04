@@ -22,7 +22,7 @@ function Popup({ isPopupOpen, openPopup, closePopup }) {
     >
       <div className={`popup__container`}>
         <button
-          className='popup__button-close'
+          className='button popup__button-close'
           type='button'
           onClick={closePopup}
         />
