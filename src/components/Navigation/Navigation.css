@@ -1,0 +1,119 @@
+.nav {
+    margin-left: 44px;
+    display: flex;
+    gap: 16px;
+    flex-grow: 1;
+    align-items: center;
+}
+
+
+.nav__link {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.nav__link_active {
+    font-weight: 500;
+}
+
+.nav__link_place_profile-info {
+    display: flex;
+    gap: 17px;
+    align-items: center;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.nav__profile-info {
+    margin-left: auto;
+}
+
+.nav__profile-img {
+    width: 26px;
+    height: 30px;
+    background: #f9f9f9 url("../../images/account.svg") no-repeat center center;
+    border-radius: 4px;
+}
+
+.nav__profile-img_burger {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .nav_style_popup {
+        flex-direction: column;
+        margin-left: 0;
+        height: 100%;
+        gap: 23px;
+        padding-top: 106px;
+        padding-bottom: 85px;
+        box-sizing: border-box;
+    }
+
+    .nav__link {
+        display: none;
+    }
+
+    .nav__link_active {
+        border-bottom: 2px solid #000;
+    }
+
+    .nav__link_style_popup {
+        display: block;
+        text-align: center;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        padding-bottom: 4px;
+        box-sizing: border-box;
+    }
+
+    .nav__profile-info_style_popup {
+        margin-left: 0;
+        margin-top: auto;
+    }
+
+    .nav__profile-img_burger {
+        display: block;
+        min-width: 44px;
+        min-height: 44px;
+        background: #fff url("../../images/burger.svg") no-repeat center center;
+        border: none;
+        outline: none;
+    }
+
+    .nav__link_place_profile-info_style_popup {
+        display: flex;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .nav_style_popup {
+        padding-top: 102px;
+        gap: 18px;
+        padding-bottom: 41px;
+    }
+
+    .nav__link {
+        font-weight: 500;
+    }
+
+    .nav__profile-img_burger {
+        min-width: 40px;
+        min-height: 43px;
+        background-image: url("../../images/burger-mobile.svg");
+    }
+
+    .nav__link_style_popup {
+        padding-bottom: 5px;
+    }
+}
