@@ -1,0 +1,170 @@
+.profile {
+    padding: 74px 0 70px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile__header {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+}
+
+.profile__form {
+    padding-top: 106px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 200px;
+}
+
+.profile__inputs {
+    display: flex;
+    flex-direction: column;
+    width: 410px;
+}
+
+.profile__label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding: 16px 0 18px;
+    box-sizing: border-box;
+}
+
+.profile__label:first-child {
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.profile__input {
+    color: #000;
+    text-align: right;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border: none;
+    padding: 0;
+}
+
+.profile__input::placeholder {
+    color: #000;
+    text-align: right;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.profile__input:focus {
+    outline: none;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.profile__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.profile__button {
+    text-align: center;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background-color: transparent;
+    border: none;
+}
+
+.profile__button:last-child {
+    color: #EE3465;
+    font-weight: 500;
+}
+
+.profile__button:hover {
+    cursor: pointer;
+}
+
+.profile__button_type_submit {
+    background-color: var(--color-vivid-green);
+    min-height: 45px;
+    border-radius: 3px;
+}
+
+.profile__button_type_submit:last-child {
+    color: #FFF;
+}
+
+.profile__button_type_inactive {
+    background-color: #F8F8F8;
+    color: #C2C2C2;
+}
+
+.profile__button_type_inactive:last-child {
+    color: #C2C2C2;
+}
+
+.profile__text {
+    padding: 0;
+    margin: 0;
+    color: #FF004C;
+    text-align: center;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media screen and (max-width: 768px) {
+    .profile {
+        padding-top: 236px;
+        padding-bottom: 0;
+    }
+
+    .profile__label {
+        padding-bottom: 17px;
+    }
+
+    .profile__form {
+        padding-top: 80px;
+        gap: 192px;
+    }
+
+    .profile__buttons {
+        gap: 13px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .profile {
+        padding: 70px 30px 40px;
+    }
+
+    .profile__form {
+        width: 100%;
+        padding-top: 64px;
+        gap: 359px;
+    }
+
+    .profile__inputs {
+        width: auto;
+    }
+
+    .profile__label {
+        padding-bottom: 18px;
+    }
+
+    .profile__button {
+        font-size: 12px;
+    }
+
+}
