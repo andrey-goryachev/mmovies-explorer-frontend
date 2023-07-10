@@ -1,9 +1,16 @@
 import React from 'react';
 import './Preloader.css'
 
-function Preloader(props) {
+function Preloader({movies}) {
   return (
-    <p className={'preloader'}>Загружаю фильмы ...</p>
+    <>
+      {movies
+        ?
+        <p className={'preloader'}>Загружаю фильмы ...</p>
+        :
+        <p className={'preloader'}>Ничего не найдено</p>
+      }
+    </>
   );
 }
 

@@ -17,6 +17,7 @@ class MoviesApi {
       throw new Error(`Ошибка!!! статус ${response.status}`)
     } catch (e) {
       console.log(e)
+      throw new Error()
     }
 
 

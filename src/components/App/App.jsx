@@ -11,18 +11,24 @@ function App() {
   const [movies, setMovies] = useState([])
   const [searchText, setSearchText] = useState('')
   const [loadingMovies, setLoadingMovies] = useState(false)
+  const [errorLoadingMovies, setErrorLoadingMovies] = useState(false)
 
   const changeSearchText = (value) => setSearchText(value)
   const handleLoadingMovies = (value) => setLoadingMovies(!loadingMovies)
 
   useEffect(() => {
     const getMovies = async () => {
-      setLoadingMovies(true)
+      try {
+        setLoadingMovies(true)
 
-      const allMovies = await MoviesApi.getMovies()
-      setMovies(allMovies)
+        const allMovies = await MoviesApi.getMovies()
+        setMovies(allMovies)
 
-      setLoadingMovies(false)
+        setLoadingMovies(false)
+      } catch (e) {
+        setErrorLoadingMovies(true)
+        setLoadingMovies(false)
+      }
     }
     if (searchText) {
       getMovies()
@@ -47,6 +53,7 @@ function App() {
                      changeSearchText={changeSearchText}
                      loadingMovies = {loadingMovies}
                      handleLoadingMovies = {handleLoadingMovies}
+                     errorLoadingMovies = {errorLoadingMovies}
           />
           <Popup isPopupOpen={isPopupOpen} openPopup={openPopup} closePopup={closePopup}/>
         </main>

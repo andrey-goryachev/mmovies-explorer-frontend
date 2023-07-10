@@ -9,7 +9,7 @@ import Register from "../Register/Register";
 import {paths} from "../../utils/conts";
 import ErrorPage from "../ErrorPage/ErrorPage";
 
-function AppRoutes({movies, changeSearchText, searchText, loadingMovies, handleLoadingMovies}) {
+function AppRoutes({movies, changeSearchText, searchText, loadingMovies, handleLoadingMovies, errorLoadingMovies}) {
   return (
     <Routes>
       <Route
@@ -21,8 +21,9 @@ function AppRoutes({movies, changeSearchText, searchText, loadingMovies, handleL
         element={<Movies movies={movies}
                          searchText={searchText}
                          changeSearchText={changeSearchText}
-                         loadingMovies = {loadingMovies}
-                         handleLoadingMovies = {handleLoadingMovies}
+                         loadingMovies={loadingMovies}
+                         handleLoadingMovies={handleLoadingMovies}
+                         errorLoadingMovies={errorLoadingMovies}
         />}
       />
       <Route

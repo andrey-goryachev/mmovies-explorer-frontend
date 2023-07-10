@@ -37,7 +37,7 @@ function MoviesCardList({movies, searchText}) {
           <MoviesCard key={movie.id} movie={movie}/>
         ))}
       </ul>
-      {(movies.length > maxMoviesPage) && <div className={'movies__button-container'}>
+      {movies && (movies.length > maxMoviesPage) && <div className={'movies__button-container'}>
         <button className={'button movies__button'} type={'button'}>Ещё</button>
       </div>
       }
