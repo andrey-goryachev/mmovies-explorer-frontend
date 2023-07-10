@@ -7,6 +7,14 @@ const paths = {
   signup: '/signup'
 }
 
+const checkValidity = (input) => {
+  if (!input.validity.valid) {
+    return input.validationMessage
+  } else {
+    return ''
+  }
+}
+
 const movies = [
   {
     id: 1,
@@ -128,4 +136,5 @@ const movies = [
 export {
   paths,
   movies,
+  checkValidity
 }

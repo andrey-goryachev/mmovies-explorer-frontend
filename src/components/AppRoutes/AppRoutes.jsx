@@ -9,7 +9,7 @@ import Register from "../Register/Register";
 import {paths} from "../../utils/conts";
 import ErrorPage from "../ErrorPage/ErrorPage";
 
-function AppRoutes({movies}) {
+function AppRoutes({movies, changeSearchText, searchText, loadingMovies, handleLoadingMovies}) {
   return (
     <Routes>
       <Route
@@ -18,11 +18,16 @@ function AppRoutes({movies}) {
       />
       <Route
         path={paths.movies}
-        element={<Movies/>}
+        element={<Movies movies={movies}
+                         searchText={searchText}
+                         changeSearchText={changeSearchText}
+                         loadingMovies = {loadingMovies}
+                         handleLoadingMovies = {handleLoadingMovies}
+        />}
       />
       <Route
         path={paths.savedMovies}
-        element={<SavedMovies />}
+        element={<SavedMovies/>}
       />
       <Route
         path={paths.profile}
@@ -30,15 +35,15 @@ function AppRoutes({movies}) {
       />
       <Route
         path={paths.signin}
-        element={<Login header={'Добро пожаловать!'} buttonText={'Зарегистрироваться'} isRegister={true}/>}
+        element={<Login header={'Рады видеть!'} buttonText={'Зарегистрироваться'} isRegister={true}/>}
       />
       <Route
         path={paths.signup}
-        element={<Register header={'Рады видеть!'} buttonText={'Войти'} isRegister={false}/>}
+        element={<Register header={'Добро пожаловать!'} buttonText={'Войти'} isRegister={false}/>}
       />
       <Route
         path={'*'}
-        element={<ErrorPage />}
+        element={<ErrorPage/>}
       />
     </Routes>
   );

@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import './AuthInput.css'
 
-function AuthInput({
+  function AuthInput({
                      idTag,
                      labelText,
                      placeholder,

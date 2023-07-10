@@ -2,8 +2,10 @@ import React, {useEffect, useState} from 'react';
 import './MoviesCardList.css'
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList( {movies} ) {
-  const [width, setWidth] = React.useState(window.innerWidth);
+// import Preloader from "../Preloader/Preloader";
+
+function MoviesCardList({movies, searchText}) {
+  const [width, setWidth] = useState(window.innerWidth);
   const [newMoviesList, setNewMoviesList] = React.useState([])
   const [maxMoviesPage, setMaxMoviesPage] = useState(0)
 
@@ -15,15 +17,18 @@ function MoviesCardList( {movies} ) {
     if (width > breakpointTab) {
       setMaxMoviesPage(16);
     }
-    if (width <= breakpointTab) {
+    if (width <= breakpointTab && width > breakpointMobile) {
       setMaxMoviesPage(8);
     }
-    if (width <= breakpointMobile) {
+    if (width <= breakpointMobile && width > 0) {
       setMaxMoviesPage(5);
+    }
+    if (width === 0) {
+      setMaxMoviesPage(0);
     }
 
     setNewMoviesList(movies.slice(0, maxMoviesPage))
-  }, [maxMoviesPage]);
+  }, [movies]);
 
   return (
     <section className={'movies'}>
@@ -36,7 +41,6 @@ function MoviesCardList( {movies} ) {
         <button className={'button movies__button'} type={'button'}>Ещё</button>
       </div>
       }
-
     </section>
   );
 }
