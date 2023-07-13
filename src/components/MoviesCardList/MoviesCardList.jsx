@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './MoviesCardList.css'
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({movies, searchText}) {
+function MoviesCardList({movies}) {
   const [width, setWidth] = useState(document.documentElement.clientWidth);
   const [newMoviesList, setNewMoviesList] = useState([])
   const [maxMoviesPage, setMaxMoviesPage] = useState(0)
@@ -46,7 +46,6 @@ function MoviesCardList({movies, searchText}) {
     changeMaxMoviesPageDependingWidth()
     const updateWidth = () => {
       setWidth(document.documentElement.clientWidth)
-      changeMaxMoviesPageDependingWidth()
     }
     window.addEventListener('resize', updateWidth)
     return () => {
@@ -54,10 +53,12 @@ function MoviesCardList({movies, searchText}) {
     }
   }, [])
 
+  useEffect(changeMaxMoviesPageDependingWidth, [width])
+
 
   useEffect(() => {
     setNewMoviesList(movies.slice(0, maxMoviesPage))
-    localStorage.setItem('moviesList', JSON.stringify(newMoviesList) )
+    localStorage.setItem('movies', JSON.stringify(movies.slice(0, maxMoviesPage)) )
   }, [movies, maxMoviesPage]);
 
 

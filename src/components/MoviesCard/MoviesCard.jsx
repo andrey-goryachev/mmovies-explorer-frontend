@@ -10,6 +10,9 @@ function MoviesCard({movie}) {
   let location = useLocation()
   let pathLocation = location.pathname
 
+  const hours = Math.trunc(duration / 60)
+  const minutes = duration % 60
+
   return (
     <li className={'movie'}>
       <a className={'link movie__link'} href={trailerLink} target={'_blank'} rel="noreferrer">
@@ -28,7 +31,7 @@ function MoviesCard({movie}) {
             }
           </label>
         </div>
-        <span className={'movie__span'}>{duration}</span>
+        <span className={'movie__span'}>{`${hours === 0 ? '' : `${hours}ч`}${minutes}м`}</span>
       </a>
     </li>
   );
