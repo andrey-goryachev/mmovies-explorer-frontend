@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect} from 'react';
 import './Auth.css'
 import Logo from "../Logo/Logo";
 import {Link} from "react-router-dom";
@@ -8,6 +8,9 @@ import useValidationForm from "../../hooks/useValidationForm";
 function Auth({header, buttonText, isRegister}) {
   const { values, handleChange, resetForm, errors, isValid } = useValidationForm();
 
+  useEffect(() => {
+    resetForm();
+  }, [resetForm]);
 
   return (
     <div className={'auth'}>
