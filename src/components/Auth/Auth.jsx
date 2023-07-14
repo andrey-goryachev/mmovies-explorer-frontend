@@ -1,43 +1,70 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './Auth.css'
 import Logo from "../Logo/Logo";
 import {Link} from "react-router-dom";
 import {paths} from "../../utils/conts";
-import AuthInput from "../AuthInput/AuthInput";
+import useValidationForm from "../../hooks/useValidationForm";
 
 function Auth({header, buttonText, isRegister}) {
+  const { values, handleChange, resetForm, errors, isValid } = useValidationForm();
+
+
   return (
     <div className={'auth'}>
       <Logo/>
       <h1 className={'auth__header'}>{header}</h1>
       <form className={'auth__form'} name={'login'}>
         <div className={'auth__inputs'}>
-          {isRegister && <AuthInput idTag={'username'}
-                      typeInput={'text'}
-                      placeholder={'Виталий'}
-                      labelText={'Имя'}
-                      required={true}
-                      minLength={3}
-                      maxLength={30}
-          />}
-          <AuthInput idTag={'email'}
-                     typeInput={'email'}
-                     placeholder={'pochta@yandex.ru'}
-                     labelText={'E-mail'}
-                     required={true}
-          />
-          <AuthInput idTag={'password'}
-                     typeInput={'password'}
-                     placeholder={'Пароль'}
-                     labelText={'Пароль'}
-                     required={true}
-                     minLength={8}
-                     maxLength={30}
-          />
+          {isRegister && <div className={'auth__container-input'}>
+            <label className={'auth__label'} htmlFor={'name'}>{'Имя'}</label>
+            <input className={'auth__input'}
+                   name={'name'}
+                   id={'name'}
+                   type={'text'}
+                   placeholder={'Виталий'}
+                   required={true}
+                   onChange={handleChange}
+                   pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
+                   minLength={3}
+                   maxLength={30}
+                   value={values.name || ''}
+            />
+            <div className={'auth__error-validation'}>{errors.name || ''}</div>
+          </div>}
+          <div className={'auth__container-input'}>
+            <label className={'auth__label'} htmlFor={'email'}>{'E-mail'}</label>
+            <input className={'auth__input'}
+                   name={'email'}
+                   id={'email'}
+                   type={'email'}
+                   placeholder={'pochta@yandex.ru'}
+                   required={true}
+                   onChange={handleChange}
+                   value={values.email || ''}
+            />
+            <div className={'auth__error-validation'}>{errors.email || ''}</div>
+          </div>
+
+          <div className={'auth__container-input'}>
+            <label className={'auth__label'} htmlFor={'password'}>{'Пароль'}</label>
+            <input className={'auth__input'}
+                   name={'password'}
+                   id={'password'}
+                   type={'password'}
+                   placeholder={'Пароль'}
+                   required={true}
+                   minLength={8}
+                   maxLength={30}
+                   onChange={handleChange}
+                   value={values.password || ''}
+            />
+            <div className={'auth__error-validation'}>{errors.password || ''}</div>
+          </div>
         </div>
         <button
-          className='button auth__button'
+          className={`button auth__button ${!isValid && 'auth__button_disabled'}`}
           type='submit'
+          disabled={!isValid}
         >
           {buttonText}
         </button>

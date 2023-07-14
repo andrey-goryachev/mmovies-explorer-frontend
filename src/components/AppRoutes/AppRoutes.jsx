@@ -36,11 +36,11 @@ function AppRoutes({movies, changeSearchText, searchText, loadingMovies, handleL
       />
       <Route
         path={paths.signin}
-        element={<Login header={'Рады видеть!'} buttonText={'Зарегистрироваться'} isRegister={true}/>}
+        element={<Login header={'Рады видеть!'} buttonText={'Зарегистрироваться'} isRegister={false}/>}
       />
       <Route
         path={paths.signup}
-        element={<Register header={'Добро пожаловать!'} buttonText={'Войти'} isRegister={false}/>}
+        element={<Register header={'Добро пожаловать!'} buttonText={'Войти'} isRegister={true}/>}
       />
       <Route
         path={'*'}

@@ -22,14 +22,14 @@ function Header(props) {
             <button
               className='button header__button header__button_place_login'
               type={'button'}
-              onClick={() => {navigate(paths.signin)}}
+              onClick={() => {navigate(paths.signup)}}
             >
               Регистрация
             </button>
             <button
               className='button header__button header__button_place_login header__button_style_button'
               type={'button'}
-              onClick={() => {navigate(paths.signup)}}
+              onClick={() => {navigate(paths.signin)}}
             >
               Войти
             </button>
