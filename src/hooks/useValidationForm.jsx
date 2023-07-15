@@ -10,27 +10,33 @@ export default function useValidationForm() {
     const input = e.target;
     const { value, name } = input;
 
-    if (name === 'name' && input.validity.patternMismatch) {
-      input.setCustomValidity('Имя должно содержать только латиницу, кириллицу, пробел или дефис.')
+    if (name === 'name') {
+      const regex = /^[a-zA-Zа-яА-ЯёЁëË\s-]*$/
+      if (regex.test(input.value)) {
+        input.setCustomValidity('');
+      } else {
+        input.setCustomValidity('Имя должно содержать только латиницу, кириллицу, пробел или дефис.')
+      }
+
     } else {
       input.setCustomValidity('');
     }
 
     if (name === 'email') {
       if (!isEmail(value)) {
-        input.setCustomValidity('Некорректый адрес почты.');
+        input.setCustomValidity('Некорректный адрес почты.');
       } else {
         input.setCustomValidity('');
       }
     }
 
-    setValues({ ...values, [name]: value }); // универсальный обработчик полей
-    setErrors({ ...errors, [name]: input.validationMessage }); // ошибок
-    setIsValid(input.closest('form').checkValidity()); // проверка валидности
+    setValues({ ...values, [name]: value });
+    setErrors({ ...errors, [name]: input.validationMessage });
+    setIsValid(input.closest('form').checkValidity());
   };
 
   const resetForm = useCallback(
-    (newValues = {}, newErrors = {}, newIsValid = false) => { // это метод для сброса формы, полей, ошибок
+    (newValues = {}, newErrors = {}, newIsValid = false) => {
       setValues(newValues);
       setErrors(newErrors);
       setIsValid(newIsValid);

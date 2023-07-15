@@ -5,8 +5,13 @@ import {Link} from "react-router-dom";
 import {paths} from "../../utils/conts";
 import useValidationForm from "../../hooks/useValidationForm";
 
-function Auth({header, buttonText, isRegister}) {
+function Auth({header, buttonText, isRegister, errorAuth, handleAuth}) {
   const { values, handleChange, resetForm, errors, isValid } = useValidationForm();
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    handleAuth(values)
+  }
 
   useEffect(() => {
     resetForm();
@@ -16,7 +21,7 @@ function Auth({header, buttonText, isRegister}) {
     <div className={'auth'}>
       <Logo/>
       <h1 className={'auth__header'}>{header}</h1>
-      <form className={'auth__form'} name={'login'}>
+      <form className={'auth__form'} name={'login'} onSubmit={handleSubmit}>
         <div className={'auth__inputs'}>
           {isRegister && <div className={'auth__container-input'}>
             <label className={'auth__label'} htmlFor={'name'}>{'Имя'}</label>
@@ -27,7 +32,7 @@ function Auth({header, buttonText, isRegister}) {
                    placeholder={'Виталий'}
                    required={true}
                    onChange={handleChange}
-                   pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
+                   title="Пожалуйста, введите только латиницу, кириллицу, пробел или дефис."
                    minLength={3}
                    maxLength={30}
                    value={values.name || ''}
@@ -64,6 +69,8 @@ function Auth({header, buttonText, isRegister}) {
             <div className={'auth__error-validation'}>{errors.password || ''}</div>
           </div>
         </div>
+        {/*{errorAuth && <div className={'auth__error'}>{errorAuth}</div>}*/}
+        {<div className={'auth__error'}>{errorAuth}</div>}
         <button
           className={`button auth__button ${!isValid && 'auth__button_disabled'}`}
           type='submit'
@@ -77,7 +84,7 @@ function Auth({header, buttonText, isRegister}) {
             Уже зарегистрированы?{' '}
             <Link
               className='link auth__link'
-              to={paths.signup}
+              to={paths.signin}
             >
               Войти
             </Link>
@@ -87,7 +94,7 @@ function Auth({header, buttonText, isRegister}) {
             Ещё не зарегистрированы?{' '}
             <Link
               className='link auth__link'
-              to={paths.signin}
+              to={paths.signup}
             >
               Регистрация
             </Link>

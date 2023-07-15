@@ -76,6 +76,12 @@
     color: var(--color-vivid-green);
 }
 
+.auth__error {
+    color: red;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
 @media screen and (max-width: 460px) {
     .auth {
         width: 260px;
