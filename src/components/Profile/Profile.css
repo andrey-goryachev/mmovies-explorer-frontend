@@ -81,6 +81,8 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    min-height: 45px;
+    border-radius: 3px;
     background-color: transparent;
     border: none;
 }
@@ -90,14 +92,13 @@
     font-weight: 500;
 }
 
-.profile__button:hover {
-    cursor: pointer;
-}
+/*.profile__button:hover {*/
+/*    cursor: pointer;*/
+/*}*/
 
 .profile__button_type_submit {
     background-color: var(--color-vivid-green);
-    min-height: 45px;
-    border-radius: 3px;
+
 }
 
 .profile__button_type_submit:last-child {
@@ -113,6 +114,10 @@
     color: #C2C2C2;
 }
 
+.profile__button_type_inactive:hover {
+    cursor: auto;
+}
+
 .profile__text {
     padding: 0;
     margin: 0;
@@ -122,6 +127,16 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+.profile__error-validation {
+    color: #EE3465;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    min-height: 12px;
+    padding: 0;
 }
 
 @media screen and (max-width: 768px) {

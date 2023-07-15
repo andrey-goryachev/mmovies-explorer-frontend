@@ -8,6 +8,7 @@ import MoviesApi from "../../utils/MoviesApi";
 import mainApi from "../../utils/MainApi";
 import {useNavigate} from "react-router-dom";
 import {paths} from "../../utils/conts";
+import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -71,6 +72,7 @@ function App() {
           localStorage.setItem('token', res.token)
           setIsLogged(true)
           navigate(paths.movies)
+          setErrorAuth('')
         }
       })
       .catch(e => {
@@ -81,36 +83,58 @@ function App() {
   const getCurrentUser = () => {
     if (isLogged) {
       mainApi.getCurrentUser()
-        .then(res => setCurrentUser(res))
+        .then(res => {
+          setCurrentUser(res)
+          setErrorAuth('')
+        })
         .catch(e => {
           setErrorAuth(e)
         })
     }
   }
 
+  const updateUser = ({name, email}) => {
+    mainApi.updateUser(name, email)
+      .then(res => {
+        setCurrentUser(res)
+      })
+      .catch(e => setErrorAuth(e))
+  }
+
+  const logOut = () => {
+    setIsLogged(false)
+    setCurrentUser({})
+    localStorage.clear()
+    navigate(paths.main)
+  }
+
   useEffect(getMovies, [searchText])
   useEffect(getCurrentUser, [isLogged])
 
   return (
-    <div className={'App'}>
-      <div className={'page-container'}>
-        <Header isPopupOpen={isPopupOpen} openPopup={openPopup} closePopup={closePopup}/>
-        <main className={'main'}>
-          <AppRoutes movies={movies}
-                     searchText={searchText}
-                     changeSearchText={changeSearchText}
-                     loadingMovies={loadingMovies}
-                     handleLoadingMovies={handleLoadingMovies}
-                     errorLoadingMovies={errorLoadingMovies}
-                     errorAuth={errorAuth}
-                     handleRegister={handleRegister}
-                     handleLogin={handleLogin}
-          />
-          <Popup isPopupOpen={isPopupOpen} openPopup={openPopup} closePopup={closePopup}/>
-        </main>
-        <Footer/>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className={'App'}>
+        <div className={'page-container'}>
+          <Header isPopupOpen={isPopupOpen} openPopup={openPopup} closePopup={closePopup}/>
+          <main className={'main'}>
+            <AppRoutes movies={movies}
+                       searchText={searchText}
+                       changeSearchText={changeSearchText}
+                       loadingMovies={loadingMovies}
+                       handleLoadingMovies={handleLoadingMovies}
+                       errorLoadingMovies={errorLoadingMovies}
+                       errorAuth={errorAuth}
+                       handleRegister={handleRegister}
+                       handleLogin={handleLogin}
+                       updateUser={updateUser}
+                       logOut={logOut}
+            />
+            <Popup isPopupOpen={isPopupOpen} openPopup={openPopup} closePopup={closePopup}/>
+          </main>
+          <Footer/>
+        </div>
       </div>
-    </div>
+    </CurrentUserContext.Provider>
   );
 }
 

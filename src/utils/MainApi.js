@@ -39,12 +39,26 @@ class MainApi {
   getCurrentUser() {
     return fetch(`${this._urlBase}/users/me`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     }).then(async (res) => {
       const result = await res.json();
       return res.ok ? result : Promise.reject(result.message);
     })
+  }
+
+  updateUser(name, email) {
+    return fetch(`${this._urlBase}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email }),
+    }).then(async (res) => {
+      const result = await res.json();
+      return res.ok ? result : Promise.reject(result.message);
+    });
   }
 }
 

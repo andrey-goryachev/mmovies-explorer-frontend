@@ -18,7 +18,9 @@ function AppRoutes({
   errorLoadingMovies,
   errorAuth,
   handleLogin,
-  handleRegister
+  handleRegister,
+  updateUser,
+  logOut
 }) {
   return (
     <Routes>
@@ -42,7 +44,7 @@ function AppRoutes({
       />
       <Route
         path={paths.profile}
-        element={<Profile/>}
+        element={<Profile updateUser={updateUser} logOut={logOut}/>}
       />
       <Route
         path={paths.signin}
