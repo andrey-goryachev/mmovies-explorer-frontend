@@ -7,6 +7,10 @@ const paths = {
   signup: '/signup'
 }
 
+// const headerPaths = ['/movies', '/saved-movies', '/profile', '/'];
+const headerPaths = [paths.movies, paths.savedMovies, paths.profile, paths.main];
+const footerPaths = [paths.movies, paths.savedMovies, paths.main];
+
 const checkValidity = (input) => {
   if (!input.validity.valid) {
     return input.validationMessage
@@ -136,5 +140,7 @@ const movies = [
 export {
   paths,
   movies,
+  headerPaths,
+  footerPaths,
   checkValidity
 }

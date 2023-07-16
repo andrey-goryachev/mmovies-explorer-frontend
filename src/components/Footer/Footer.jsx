@@ -9,16 +9,19 @@ function Footer() {
 
   return (
     <>
-      {(pathLocation === paths.main || pathLocation === paths.movies || pathLocation === paths.savedMovies) && <footer className={'footer'}>
+      {/*{(pathLocation === paths.main || pathLocation === paths.movies || pathLocation === paths.savedMovies) && <footer className={'footer'}>*/}
+      {<footer className={'footer'}>
         <h3 className={'footer__header'}>Учебный проект Яндекс.Практикум х BeatFilm.</h3>
         <div className={'footer__container'}>
           <p className="footer__text">© {new Date().getFullYear()}</p>
           <ul className={'footer__list'}>
             <li className={'footer__list-item'}>
-              <a className={'link footer__link'} href="https://practicum.yandex.ru/" target={'_blank'} rel="noreferrer">Яндекс.Практикум</a>
+              <a className={'link footer__link'} href="https://practicum.yandex.ru/" target={'_blank'}
+                 rel="noreferrer">Яндекс.Практикум</a>
             </li>
             <li className={'footer__list-item'}>
-              <a className={'link footer__link'} href="https://github.com/andrey-goryachev" target={'_blank'} rel="noreferrer">Github</a>
+              <a className={'link footer__link'} href="https://github.com/andrey-goryachev" target={'_blank'}
+                 rel="noreferrer">Github</a>
             </li>
           </ul>
         </div>

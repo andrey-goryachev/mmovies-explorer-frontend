@@ -1,14 +1,22 @@
 import './App.css'
-import AppRoutes from "../AppRoutes/AppRoutes";
+// import AppRoutes from "../AppRoutes/AppRoutes";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Popup from "../Popup/Popup";
 import MoviesApi from "../../utils/MoviesApi";
 import mainApi from "../../utils/MainApi";
-import {useNavigate} from "react-router-dom";
-import {paths} from "../../utils/conts";
+import {Route, Routes, useNavigate} from "react-router-dom";
+import {footerPaths, headerPaths, paths} from "../../utils/conts";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
+import Main from "../Main/Main";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies";
+import Profile from "../Profile/Profile";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -21,6 +29,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
 
   const navigate = useNavigate()
+
 
   const changeSearchText = (value) => setSearchText(value)
   const handleLoadingMovies = (value) => setLoadingMovies(!loadingMovies)
@@ -115,27 +124,107 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className={'App'}>
         <div className={'page-container'}>
-          <Header isPopupOpen={isPopupOpen}
+          <Routes>
+            {headerPaths.map((path) => (
+              <Route
+                key={path}
+                path={path}
+                // element={<ProtectedRoute
+                //   element={Header}
+                //   openPopup={openPopup}
+                //   closePopup={closePopup}
+                //   isLogged={isLogged}
+                // />}
+                element={<Header
                   openPopup={openPopup}
                   closePopup={closePopup}
                   isLogged={isLogged}
-          />
+                />}
+              />
+            ))
+            }
+
+          </Routes>
           <main className={'main'}>
-            <AppRoutes movies={movies}
-                       searchText={searchText}
-                       changeSearchText={changeSearchText}
-                       loadingMovies={loadingMovies}
-                       handleLoadingMovies={handleLoadingMovies}
-                       errorLoadingMovies={errorLoadingMovies}
-                       errorAuth={errorAuth}
-                       handleRegister={handleRegister}
-                       handleLogin={handleLogin}
-                       updateUser={updateUser}
-                       logOut={logOut}
-            />
+            <Routes>
+              <Route
+                path={paths.main}
+                element={<Main/>}
+              />
+
+              <Route
+                path={paths.movies}
+                element={
+                  <ProtectedRoute
+                    element={Movies}
+                    movies={movies}
+                    searchText={searchText}
+                    changeSearchText={changeSearchText}
+                    loadingMovies={loadingMovies}
+                    handleLoadingMovies={handleLoadingMovies}
+                    errorLoadingMovies={errorLoadingMovies}
+                    isLogged={isLogged}
+                  />
+                }
+              />
+
+              <Route
+                path={paths.savedMovies}
+                element={
+                  <ProtectedRoute
+                    element={SavedMovies}
+                    isLogged={isLogged}
+                  />
+                }
+              />
+
+              <Route
+                path={paths.profile}
+                element={<ProtectedRoute
+                  element={Profile}
+                  updateUser={updateUser}
+                  logOut={logOut}
+                  isLogged={isLogged}
+                />}
+                // element={<Profile updateUser={updateUser} logOut={logOut}/>}
+              />
+              <Route
+                path={paths.signin}
+                element={<Login header={'Рады видеть!'}
+                                buttonText={'Войти'}
+                                isRegister={false}
+                                errorAuth={errorAuth}
+                                handleAuth={handleLogin}
+                />}
+              />
+              <Route
+                path={paths.signup}
+                element={<Register header={'Добро пожаловать!'}
+                                   buttonText={'Зарегистрироваться'}
+                                   isRegister={true}
+                                   errorAuth={errorAuth}
+                                   handleAuth={handleRegister}
+                />}
+              />
+              <Route
+                path={'*'}
+                element={<ErrorPage/>}
+              />
+            </Routes>
             <Popup isPopupOpen={isPopupOpen} openPopup={openPopup} closePopup={closePopup}/>
           </main>
-          <Footer/>
+          <Routes>
+            {footerPaths.map((path) => {
+              return <Route
+                key={path}
+                path={path}
+                element={<Footer/>}
+              />
+            })
+            }
+          </Routes>
+
+
         </div>
       </div>
     </CurrentUserContext.Provider>

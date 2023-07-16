@@ -12,7 +12,8 @@ function Header(props) {
 
   return (
     <>
-      {(pathLocation === paths.main || pathLocation === paths.profile || pathLocation === paths.movies || pathLocation === paths.savedMovies) &&
+      {/*{(pathLocation === paths.main || pathLocation === paths.profile || pathLocation === paths.movies || pathLocation === paths.savedMovies) &&*/}
+      {
         <header className={'header'}>
           <Logo/>
           {pathLocation !== paths.main &&
