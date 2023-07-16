@@ -115,7 +115,11 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className={'App'}>
         <div className={'page-container'}>
-          <Header isPopupOpen={isPopupOpen} openPopup={openPopup} closePopup={closePopup}/>
+          <Header isPopupOpen={isPopupOpen}
+                  openPopup={openPopup}
+                  closePopup={closePopup}
+                  isLogged={isLogged}
+          />
           <main className={'main'}>
             <AppRoutes movies={movies}
                        searchText={searchText}

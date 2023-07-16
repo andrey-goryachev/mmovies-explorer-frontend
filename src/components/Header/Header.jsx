@@ -18,7 +18,8 @@ function Header(props) {
           {pathLocation !== paths.main &&
             <Navigation {...props}/>
           }
-          {pathLocation === paths.main && <div className={'header__login'}>
+          {/*{pathLocation === paths.main && props.isLogged && <div className={'header__login'}>*/}
+          {!props.isLogged && <div className={'header__login'}>
             <button
               className='button header__button header__button_place_login'
               type={'button'}
