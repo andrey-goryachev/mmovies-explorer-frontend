@@ -63,7 +63,7 @@ function Profile({updateUser, logOut}) {
             logOut()
           }}>Выйти из аккаунта</button>
           }
-          {onEdit && <p className={'profile__text'}>При обновлении профиля произошла ошибка.</p>}
+          {onEdit && (errors.length === 0) && <p className={'profile__text'}>При обновлении профиля произошла ошибка.</p>}
           {onEdit && <button
             className={`button profile__button profile__button_type_submit ${(!isValid || (currentUser.name === values.name && currentUser.email === values.email)) && 'profile__button_type_inactive'}`}
             type={'submit'}

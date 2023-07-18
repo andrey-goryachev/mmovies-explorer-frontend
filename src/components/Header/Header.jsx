@@ -16,9 +16,9 @@ function Header(props) {
       {
         <header className={'header'}>
           <Logo/>
-          {pathLocation !== paths.main &&
+          {/*{pathLocation !== paths.main &&*/}
             <Navigation {...props}/>
-          }
+          {/*}*/}
           {/*{pathLocation === paths.main && props.isLogged && <div className={'header__login'}>*/}
           {!props.isLogged && <div className={'header__login'}>
             <button

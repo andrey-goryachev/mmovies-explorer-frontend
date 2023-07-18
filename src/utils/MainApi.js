@@ -54,7 +54,58 @@ class MainApi {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, email }),
+      body: JSON.stringify({name, email}),
+    }).then(async (res) => {
+      const result = await res.json();
+      return res.ok ? result : Promise.reject(result.message);
+    });
+  }
+
+  getSavedMovies() {
+    return fetch(`${this._urlBase}/movies`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    }).then(async (res) => {
+      const result = await res.json();
+      return res.ok ? result : Promise.reject(result.message);
+    });
+  }
+
+  saveMovie(movie) {
+    console.log('save movie - movie')
+    console.log(movie)
+    return fetch(`${this._urlBase}/movies`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        country: movie.country,
+        director: movie.director,
+        year: movie.year,
+        description: movie.description,
+        duration: movie.duration,
+        image: movie.image,
+        trailerLink: movie.trailerLink,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+        thumbnail: movie.thumbnail,
+        movieId: movie.id,
+      })
+    }).then(async (res) => {
+      const result = await res.json();
+      return res.ok ? result : Promise.reject(result.message);
+    });
+  }
+
+  deleteMovie(movieId) {
+    return fetch(`${this._urlBase}/movies/${movieId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
     }).then(async (res) => {
       const result = await res.json();
       return res.ok ? result : Promise.reject(result.message);

@@ -1,25 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import './MoviesCardList.css'
 import MoviesCard from "../MoviesCard/MoviesCard";
+import {breakpointDesktop, breakpointMobile, breakpointTab, paths} from "../../utils/conts";
+import {useLocation} from "react-router-dom";
 
-function MoviesCardList({movies}) {
+function MoviesCardList({movies, savedMoviesList, handleSaveMovie, handleDeleteMovie}) {
   const [width, setWidth] = useState(document.documentElement.clientWidth);
-  const [newMoviesList, setNewMoviesList] = useState([])
+  const [visibleMoviesList, setVisibleMoviesList] = useState([])
   const [maxMoviesPage, setMaxMoviesPage] = useState(0)
-
-  const breakpointDesktop = 1024;
-  const breakpointTab = 768;
-  const breakpointMobile = 460;
+  let location = useLocation()
+  let pathLocation = location.pathname
 
   const increaseNumberMovies = () => {
     if (width > breakpointDesktop) {
-      setMaxMoviesPage (maxMoviesPage + 4)
+      setMaxMoviesPage(maxMoviesPage + 4)
     }
     if (width <= breakpointDesktop && width > breakpointTab) {
-      setMaxMoviesPage (maxMoviesPage + 3)
+      setMaxMoviesPage(maxMoviesPage + 3)
     }
     if (width <= breakpointTab) {
-      setMaxMoviesPage (maxMoviesPage + 2)
+      setMaxMoviesPage(maxMoviesPage + 2)
     }
   }
 
@@ -41,9 +41,20 @@ function MoviesCardList({movies}) {
     }
   }
 
+  const findSavedCard = (savedMoviesList, movie) => {
+    if(savedMoviesList) {
+      return savedMoviesList.find((item) => {
+        return item.movieId === (movie.id || movie.movieId)
+      })
+    }
+    return false
+  }
+
 
   useEffect(() => {
-    changeMaxMoviesPageDependingWidth()
+    if (pathLocation === paths.movies) {
+      changeMaxMoviesPageDependingWidth()
+    }
     const updateWidth = () => {
       setWidth(document.documentElement.clientWidth)
     }
@@ -57,21 +68,27 @@ function MoviesCardList({movies}) {
 
 
   useEffect(() => {
-    setNewMoviesList(movies.slice(0, maxMoviesPage))
-    localStorage.setItem('movies', JSON.stringify(movies.slice(0, maxMoviesPage)) )
+    setVisibleMoviesList(movies.slice(0, maxMoviesPage))
   }, [movies, maxMoviesPage]);
 
 
   return (
     <section className={'movies'}>
       <ul className={'movies__list'}>
-        {newMoviesList.map((movie) => (
-          <MoviesCard key={movie.id} movie={movie}/>
+        {visibleMoviesList.map((movie) => (
+          <MoviesCard key={movie.movieId || movie.id }
+                      movie={movie}
+                      userSaved={findSavedCard(savedMoviesList, movie)}
+                      // userSaved={true}
+                      handleSaveMovie={handleSaveMovie}
+                      handleDeleteMovie={handleDeleteMovie}
+          />
         ))}
       </ul>
-      {movies && (movies.length > maxMoviesPage) && <div className={'movies__button-container'}>
-        <button className={'button movies__button'} type={'button'} onClick={increaseNumberMovies}>Ещё</button>
-      </div>
+      {movies && (movies.length > maxMoviesPage) && (pathLocation === paths.movies) &&
+        <div className={'movies__button-container'}>
+          <button className={'button movies__button'} type={'button'} onClick={increaseNumberMovies}>Ещё</button>
+        </div>
       }
     </section>
   );

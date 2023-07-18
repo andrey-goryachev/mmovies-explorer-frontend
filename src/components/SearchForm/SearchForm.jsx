@@ -1,8 +1,14 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './SearchForm.css'
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+import {CurrentUserContext} from "../../contexts/CurrentUserContext";
+import {useLocation} from "react-router-dom";
+import {paths} from "../../utils/conts";
 
-function SearchForm({searchText , changeSearchText}) {
+function SearchForm({searchText , handleSearchText, handleCheckboxShortMovies, checkboxShortMovies}) {
+  const currentUser = useContext(CurrentUserContext)
+  let location = useLocation()
+  let pathLocation = location.pathname
   const [errorInput, setErrorInput] = useState('')
   const [inputValue, setInputValue] = useState('')
 
@@ -12,13 +18,19 @@ function SearchForm({searchText , changeSearchText}) {
       setErrorInput('Нужно ввести ключевое слово')
       return
     }
-    changeSearchText(inputValue)
+    handleSearchText(inputValue)
   }
 
   const changeInput = (event) => {
     setInputValue(event.target.value)
     setErrorInput('')
   }
+
+  useEffect(() => {
+    if (pathLocation === paths.movies && localStorage.getItem(`${currentUser.email}_searchText`)) {
+      setInputValue(localStorage.getItem(`${currentUser.email}_searchText`))
+    }
+  }, [currentUser])
 
 
   return (
@@ -31,7 +43,7 @@ function SearchForm({searchText , changeSearchText}) {
                  type="text"
                  placeholder={'Фильм'}
                  onChange={changeInput}
-                 value={inputValue}
+                 value={inputValue || ''}
           />
           <button className={'button search-form__button'}
                   type="submit"
@@ -39,7 +51,7 @@ function SearchForm({searchText , changeSearchText}) {
           ></button>
         </div>
         <p className={'search-form__error'}>{errorInput ? errorInput : ''}</p>
-        <FilterCheckbox/>
+        <FilterCheckbox checkboxShortMovies={checkboxShortMovies} handleCheckboxShortMovies={handleCheckboxShortMovies}/>
       </form>
     </div>
   );

@@ -1,15 +1,12 @@
 import React from 'react';
 import './Preloader.css'
 
-function Preloader({movies}) {
+function Preloader({isRunning}) {
   return (
     <>
-      {movies
-        ?
-        <p className={'preloader'}>Загружаю фильмы ...</p>
-        :
-        <p className={'preloader'}>Ничего не найдено</p>
-      }
+      {isRunning && <div className={'preloader'}>
+        <div className={'preloader__container'}></div>
+      </div>}
     </>
   );
 }
