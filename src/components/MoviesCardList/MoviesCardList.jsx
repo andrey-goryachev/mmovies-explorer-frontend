@@ -4,6 +4,7 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import {breakpointDesktop, breakpointMobile, breakpointTab, paths} from "../../utils/conts";
 import {useLocation} from "react-router-dom";
 
+
 function MoviesCardList({movies, savedMoviesList, handleSaveMovie, handleDeleteMovie}) {
   const [width, setWidth] = useState(document.documentElement.clientWidth);
   const [visibleMoviesList, setVisibleMoviesList] = useState([])
@@ -50,7 +51,6 @@ function MoviesCardList({movies, savedMoviesList, handleSaveMovie, handleDeleteM
     return false
   }
 
-
   useEffect(() => {
     if (pathLocation === paths.movies) {
       changeMaxMoviesPageDependingWidth()
@@ -66,11 +66,9 @@ function MoviesCardList({movies, savedMoviesList, handleSaveMovie, handleDeleteM
 
   useEffect(changeMaxMoviesPageDependingWidth, [width])
 
-
   useEffect(() => {
     setVisibleMoviesList(movies.slice(0, maxMoviesPage))
   }, [movies, maxMoviesPage]);
-
 
   return (
     <section className={'movies'}>
@@ -79,7 +77,6 @@ function MoviesCardList({movies, savedMoviesList, handleSaveMovie, handleDeleteM
           <MoviesCard key={movie.movieId || movie.id }
                       movie={movie}
                       userSaved={findSavedCard(savedMoviesList, movie)}
-                      // userSaved={true}
                       handleSaveMovie={handleSaveMovie}
                       handleDeleteMovie={handleDeleteMovie}
           />

@@ -2,15 +2,11 @@ import React, {useContext, useEffect, useState} from 'react';
 import './Movies.css'
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-// import Preloader from "../Preloader/Preloader";
 import {filterMovies, filterShortMovies, optimizeMovies} from "../../utils/utils";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import moviesApi from "../../utils/MoviesApi";
 
 function Movies({savedMoviesList, handleSaveMovie, handleDeleteMovie, handlePreloader}) {
-  // console.log('movies savedMoviesList')
-  // console.log(savedMoviesList)
-
   const currentUser = useContext(CurrentUserContext)
   const [initialMovies, setInitialMovies] = useState([])
   const [checkboxShortMovies, setCheckboxShortMovies] = useState(false)
@@ -46,7 +42,7 @@ function Movies({savedMoviesList, handleSaveMovie, handleDeleteMovie, handlePrel
           handleFilteredMovies(optimizeMovies(movies), value, checkboxShortMovies)
         })
         .catch(() => {
-          setNotFoundMovies(true)
+          setErrorLoadingMovies(true)
         })
         .finally(() => {
           handlePreloader(false)
@@ -87,18 +83,11 @@ function Movies({savedMoviesList, handleSaveMovie, handleDeleteMovie, handlePrel
                   handleCheckboxShortMovies={handleCheckboxShortMovies}
                   checkboxShortMovies={checkboxShortMovies}
       />
-      {/*{loadingMovies && <Preloader movies={movies}/>}*/}
       {errorLoadingMovies &&
         <div className={'movies__error'}>Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер
           недоступен. Подождите немного и попробуйте ещё раз</div>}
       {notFoundMovies &&
         <div className={'movies__error'}>Ничего не найдено</div>}
-      {/*{moviesLocalStorageExists*/}
-      {/*  ? !errorLoadingMovies && movies && <MoviesCardList movies={moviesEdited}/>*/}
-      {/*  : !errorLoadingMovies && searchText && movies && <MoviesCardList movies={moviesEdited}/>*/}
-      {/*}*/}
-
-      {/*{!errorLoadingMovies && searchText && movies && <MoviesCardList movies={filteredMovies}/>*/}
       {!errorLoadingMovies && <MoviesCardList movies={filteredMovies}
                                               savedMoviesList={savedMoviesList}
                                               handleSaveMovie={handleSaveMovie}

@@ -52,7 +52,6 @@
 @media screen and (max-width: 840px) {
     .techs__list {
         flex-wrap: wrap;
-        /*max-width: 86%;*/
     }
 }
 
@@ -109,9 +108,5 @@
         padding-top: 50px;
         max-width: 178px;
         justify-content: flex-start;
-    }
-
-    .techs__list-item:last-child {
-        /*margin-right: auto;*/
     }
 }

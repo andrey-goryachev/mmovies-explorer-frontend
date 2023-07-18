@@ -1,15 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react';
 import './Profile.css'
-import {useNavigate} from "react-router-dom";
-import {paths} from "../../utils/conts";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import useValidationForm from "../../hooks/useValidationForm";
+
 
 function Profile({updateUser, logOut}) {
   const currentUser = useContext(CurrentUserContext)
   const [onEdit, setOnEdit] = useState(false)
   const {values, handleChange, resetForm, errors, isValid} = useValidationForm();
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault()

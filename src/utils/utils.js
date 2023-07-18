@@ -6,19 +6,12 @@ const filterShortMovies = (movies) => {
 
 
 const filterMovies = (movies, searchText, checkboxShortMovies) => {
-  console.log('filterMovies movies')
-  console.log(movies)
-
   const searchTextMovies = movies.filter((movie) => {
     const movieLangRu = String(movie.nameRU).toLowerCase().trim();
     const movieLangEn = String(movie.nameEN).toLowerCase().trim();
     const optimizedSearchText = searchText.toLowerCase().trim();
     return movieLangRu.includes(optimizedSearchText) || movieLangEn.includes(optimizedSearchText)
   })
-
-  console.log('filterMovies searchTextMovies')
-  console.log(searchTextMovies)
-
   return checkboxShortMovies ? filterShortMovies(searchTextMovies) : searchTextMovies
 }
 

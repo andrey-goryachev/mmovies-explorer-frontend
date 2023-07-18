@@ -2,7 +2,7 @@ import React from 'react';
 import './Techs.css'
 import SectionHeader from "../SectionHeader/SectionHeader";
 
-function Techs(props) {
+function Techs() {
   return (
     <section className={'techs'} id={'techs'}>
       <SectionHeader text={'Технологии'} />

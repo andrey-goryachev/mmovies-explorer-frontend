@@ -92,10 +92,6 @@
     font-weight: 500;
 }
 
-/*.profile__button:hover {*/
-/*    cursor: pointer;*/
-/*}*/
-
 .profile__button_type_submit {
     background-color: var(--color-vivid-green);
 

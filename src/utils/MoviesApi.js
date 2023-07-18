@@ -11,8 +11,7 @@ class MoviesApi {
     try {
       const response = await fetch(this._urlBase)
       if (response.ok) {
-        const movies = await response.json()
-        return movies;
+        return await response.json()
       }
       throw new Error(`Ошибка!!! статус ${response.status}`)
     } catch (e) {
@@ -21,4 +20,5 @@ class MoviesApi {
   }
 }
 
-export default new MoviesApi(apiOptions)
+const moviesApi = new MoviesApi(apiOptions)
+export default moviesApi

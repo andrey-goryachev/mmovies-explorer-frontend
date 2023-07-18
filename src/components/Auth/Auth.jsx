@@ -69,7 +69,6 @@ function Auth({header, buttonText, isRegister, errorAuth, handleAuth}) {
             <div className={'auth__error-validation'}>{errors.password || ''}</div>
           </div>
         </div>
-        {/*{errorAuth && <div className={'auth__error'}>{errorAuth}</div>}*/}
         {<div className={'auth__error'}>{errorAuth}</div>}
         <button
           className={`button auth__button ${!isValid && 'auth__button_disabled'}`}

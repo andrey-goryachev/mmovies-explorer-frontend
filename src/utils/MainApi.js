@@ -73,8 +73,6 @@ class MainApi {
   }
 
   saveMovie(movie) {
-    console.log('save movie - movie')
-    console.log(movie)
     return fetch(`${this._urlBase}/movies`, {
       method: 'POST',
       headers: {
@@ -113,4 +111,5 @@ class MainApi {
   }
 }
 
-export default new MainApi(apiOptions)
+const mainApi = new MainApi(apiOptions)
+export default mainApi

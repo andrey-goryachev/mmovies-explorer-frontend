@@ -3,6 +3,7 @@ import './Navigation.css'
 import {Link, useLocation} from "react-router-dom";
 import {paths} from "../../utils/conts";
 
+
 function Navigation({ isPopup, openPopup, closePopup, isLogged }) {
   let location = useLocation()
   let pathLocation = location.pathname
@@ -36,25 +37,6 @@ function Navigation({ isPopup, openPopup, closePopup, isLogged }) {
             </Link>
           </li>
         </ul>
-        {/*{isPopup && <Link*/}
-        {/*  className={`link nav__link ${isPopup ? 'nav__link_style_popup' : ''} ${pathLocation === paths.main ? 'nav__link_active' : ''}`}*/}
-        {/*  to={paths.main}*/}
-        {/*>*/}
-        {/*  Главная*/}
-        {/*</Link>}*/}
-        {/*<Link*/}
-        {/*  className={`link nav__link ${isPopup ? 'nav__link_style_popup' : ''} ${pathLocation === paths.movies ? 'nav__link_active' : ''}`}*/}
-        {/*  to={paths.movies}*/}
-        {/*>*/}
-        {/*  Фильмы*/}
-        {/*</Link>*/}
-        {/*<Link*/}
-        {/*  className={`link nav__link ${isPopup ? 'nav__link_style_popup' : ''} ${pathLocation === paths.savedMovies ? 'nav__link_active' : ''}`}*/}
-        {/*  to={paths.savedMovies}*/}
-        {/*>*/}
-        {/*  Сохранённые фильмы*/}
-        {/*</Link>*/}
-
         <div className={`nav__profile-info ${isPopup ? 'nav__profile-info_style_popup' : ''}`}>
           <Link
             className={`link nav__link nav__link_place_profile-info ${isPopup ? 'nav__link_place_profile-info_style_popup' : ''}`}

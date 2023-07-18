@@ -2,6 +2,7 @@ import React from 'react';
 import './Register.css'
 import Auth from "../Auth/Auth";
 
+
 function Register( { header, buttonText, isRegister, errorAuth, handleAuth } ) {
   return (
     <section className={'register'}>

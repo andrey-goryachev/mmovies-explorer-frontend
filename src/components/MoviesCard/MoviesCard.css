@@ -131,18 +131,10 @@
     height: 16px;
     box-shadow: none;
     background-color: transparent;
-    /*background: transparent url("../../images/movies-cross.svg") no-repeat center / cover;*/
 }
 
 .movie__checkbox:checked + .movie__visible-checkbox_type_cross::before {
-    /*content: "";*/
-    /*position: absolute;*/
-    /*left: 2px;*/
-    /*top: 2px;*/
-    /*width: 12px;*/
-    /*height: 12px;*/
     background-color:transparent;
-    /*border-radius: 50%;*/
 }
 
 .movie__visible-checkbox_type_cross::before {
@@ -165,9 +157,5 @@
     .movie__image {
         height: 168px;
     }
-
-    /*.movie:last-of-type + .movie__span {*/
-    /*    padding-bottom: 8px;*/
-    /*}*/
 }
 

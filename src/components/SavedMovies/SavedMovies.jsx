@@ -1,16 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
 import './SavedMovies.css'
 import SearchForm from "../SearchForm/SearchForm";
-// import {movies} from "../../utils/conts";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
-import moviesApi from "../../utils/MoviesApi";
 import {filterMovies, filterShortMovies} from "../../utils/utils";
 
-// TODO: при перезагрузке пропадают сохраненные фильмы
 
 function SavedMovies({savedMoviesList, handleSaveMovie, handleDeleteMovie}) {
-  // const savedMovies = movies.filter(movie => movie.checked === true)
   const currentUser = useContext(CurrentUserContext)
   const [checkboxShortMovies, setCheckboxShortMovies] = useState(false)
   const [notFoundMovies, setNotFoundMovies] = useState(false)
@@ -67,11 +63,13 @@ function SavedMovies({savedMoviesList, handleSaveMovie, handleDeleteMovie}) {
                   handleCheckboxShortMovies={handleCheckboxShortMovies}
                   checkboxShortMovies={checkboxShortMovies}
       />
-      <MoviesCardList movies={visibleMovies}
-                      savedMoviesList={savedMoviesList}
-                      handleSaveMovie={handleSaveMovie}
-                      handleDeleteMovie={handleDeleteMovie}
-      />
+      {notFoundMovies &&
+        <div className={'movies__error'}>Ничего не найдено</div>}
+      {!notFoundMovies && <MoviesCardList movies={visibleMovies}
+                       savedMoviesList={savedMoviesList}
+                       handleSaveMovie={handleSaveMovie}
+                       handleDeleteMovie={handleDeleteMovie}
+      />}
     </section>
   );
 }

@@ -5,7 +5,8 @@ import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import {useLocation} from "react-router-dom";
 import {paths} from "../../utils/conts";
 
-function SearchForm({searchText , handleSearchText, handleCheckboxShortMovies, checkboxShortMovies}) {
+
+function SearchForm({handleSearchText, handleCheckboxShortMovies, checkboxShortMovies}) {
   const currentUser = useContext(CurrentUserContext)
   let location = useLocation()
   let pathLocation = location.pathname

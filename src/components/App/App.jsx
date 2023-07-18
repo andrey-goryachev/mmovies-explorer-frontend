@@ -21,18 +21,12 @@ function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false)
   const [isRunningPreloader, setIsRunningPreloader] = useState(false)
-  const [movies, setMovies] = useState([])
-  const [loadingMovies, setLoadingMovies] = useState(false)
-  const [errorLoadingMovies, setErrorLoadingMovies] = useState(false)
   const [errorAuth, setErrorAuth] = useState('')
   const [isLogged, setIsLogged] = useState(false)
   const [currentUser, setCurrentUser] = useState({})
   const [savedMoviesList, setSavedMoviesList] = useState([]);
 
   const navigate = useNavigate()
-
-
-  const handleLoadingMovies = (value) => setLoadingMovies(!loadingMovies)
 
   const openPopup = () => {
     setIsPopupOpen(true)
@@ -209,10 +203,7 @@ function App() {
                     element={
                       <ProtectedRoute
                         element={Movies}
-                        movies={movies}
                         savedMoviesList={savedMoviesList}
-                        handleLoadingMovies={handleLoadingMovies}
-                        errorLoadingMovies={errorLoadingMovies}
                         isLogged={isLogged}
                         handleSaveMovie={handleSaveMovie}
                         handleDeleteMovie={handleDeleteMovie}
@@ -289,8 +280,4 @@ function App() {
     </CurrentUserContext.Provider>
   );
 }
-
 export default App;
-
-
-// TODO:: 2. показывать ошибки пользователю
