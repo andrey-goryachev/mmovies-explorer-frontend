@@ -2,6 +2,7 @@
     display: block;
     text-decoration: none;
     transition: opacity .4s ease;
+    color: #000;
 }
 
 .link:visited {
