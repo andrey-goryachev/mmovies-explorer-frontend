@@ -95,8 +95,8 @@ function App() {
   }
 
   const getCurrentUser = () => {
-    setIsRunningPreloader(true)
     if (isLogged) {
+      setIsRunningPreloader(true)
       mainApi.getCurrentUser()
         .then(res => {
           setCurrentUser(res)
@@ -230,6 +230,7 @@ function App() {
                       updateUser={updateUser}
                       logOut={logOut}
                       isLogged={isLogged}
+                      fieldsBlocking={isRunningPreloader}
                     />}
                   />
                   <Route
@@ -240,6 +241,7 @@ function App() {
                                isRegister={false}
                                errorAuth={errorAuth}
                                handleAuth={handleLogin}
+                               fieldsBlocking={isRunningPreloader}
                       />
                       : <Navigate to={paths.main} replace={true}/>
                     }
@@ -252,6 +254,7 @@ function App() {
                                   isRegister={true}
                                   errorAuth={errorAuth}
                                   handleAuth={handleRegister}
+                                  fieldsBlocking={isRunningPreloader}
                       />
                       : <Navigate to={paths.main} replace={true}/>
                     }

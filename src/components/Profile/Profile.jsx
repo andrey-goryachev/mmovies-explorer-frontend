@@ -4,7 +4,7 @@ import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import useValidationForm from "../../hooks/useValidationForm";
 
 
-function Profile({updateUser, logOut}) {
+function Profile({updateUser, logOut, fieldsBlocking}) {
   const currentUser = useContext(CurrentUserContext)
   const [onEdit, setOnEdit] = useState(false)
   const {values, handleChange, resetForm, errors, isValid} = useValidationForm();
@@ -65,7 +65,7 @@ function Profile({updateUser, logOut}) {
           {onEdit && <button
             className={`button profile__button profile__button_type_submit ${(!isValid || (currentUser.name === values.name && currentUser.email === values.email)) && 'profile__button_type_inactive'}`}
             type={'submit'}
-            disabled={!isValid || (currentUser.name === values.name && currentUser.email === values.email)}
+            disabled={!isValid || fieldsBlocking || (currentUser.name === values.name && currentUser.email === values.email)}
           >Сохранить</button>}
         </div>
       </form>

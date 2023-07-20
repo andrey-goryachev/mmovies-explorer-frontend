@@ -3,7 +3,7 @@ import './Register.css'
 import Auth from "../Auth/Auth";
 
 
-function Register( { header, buttonText, isRegister, errorAuth, handleAuth } ) {
+function Register( { header, buttonText, isRegister, errorAuth, handleAuth, fieldsBlocking } ) {
   return (
     <section className={'register'}>
       <Auth header={header}
@@ -11,6 +11,7 @@ function Register( { header, buttonText, isRegister, errorAuth, handleAuth } ) {
             isRegister={isRegister}
             errorAuth={errorAuth}
             handleAuth={handleAuth}
+            fieldsBlocking={fieldsBlocking}
       />
     </section>
   );
