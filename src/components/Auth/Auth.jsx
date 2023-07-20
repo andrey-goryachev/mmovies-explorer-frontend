@@ -17,8 +17,6 @@ function Auth({header, buttonText, isRegister, errorAuth, handleAuth, fieldsBloc
     resetForm();
   }, [resetForm]);
 
-  // TODO:: оформить блокировку инпутов при запросе, то есть снять стили фокуса и навердения на время запроса
-
   return (
     <div className={'auth'}>
       <Logo/>
