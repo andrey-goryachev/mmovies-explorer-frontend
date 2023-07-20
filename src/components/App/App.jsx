@@ -16,6 +16,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Preloader from "../Preloader/Preloader";
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -25,6 +26,8 @@ function App() {
   const [isLogged, setIsLogged] = useState(false)
   const [currentUser, setCurrentUser] = useState({})
   const [savedMoviesList, setSavedMoviesList] = useState([]);
+  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
+  const [successfulRequest, setSuccessfulRequest] = useState(false);
 
   const navigate = useNavigate()
 
@@ -34,6 +37,10 @@ function App() {
 
   const closePopup = () => {
     setIsPopupOpen(false)
+  }
+
+  const closeInfoTooltip = () => {
+    setIsInfoTooltipPopupOpen(false)
   }
 
   const handlePreloader = (value) => {
@@ -114,8 +121,14 @@ function App() {
     mainApi.updateUser(name, email)
       .then(res => {
         setCurrentUser(res)
+        setIsInfoTooltipPopupOpen(true)
+        setSuccessfulRequest(true)
       })
-      .catch(e => setErrorAuth(e))
+      .catch(e => {
+        setErrorAuth(e)
+        setIsInfoTooltipPopupOpen(true)
+        setSuccessfulRequest(false)
+      })
       .finally(() => setIsRunningPreloader(false))
   }
 
@@ -279,8 +292,13 @@ function App() {
             </div>
           )
         }
+        <InfoTooltip isOpen={isInfoTooltipPopupOpen}
+                     onClose={closeInfoTooltip}
+                     successfully={successfulRequest}
+        />
       </div>
     </CurrentUserContext.Provider>
   );
 }
+
 export default App;
