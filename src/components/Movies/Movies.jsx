@@ -8,29 +8,27 @@ import moviesApi from "../../utils/MoviesApi";
 
 function Movies({savedMoviesList, handleSaveMovie, handleDeleteMovie, handlePreloader}) {
   const currentUser = useContext(CurrentUserContext)
-  const [initialMovies, setInitialMovies] = useState([])
-  const [checkboxShortMovies, setCheckboxShortMovies] = useState(false)
+  const [checkboxShortMovies, setCheckboxShortMovies] = useState(localStorage.getItem(`${currentUser.email}_checkboxShortMovies`))
   const [filteredMovies, setFilteredMovies] = useState([])
   const [notFoundMovies, setNotFoundMovies] = useState(false)
   const [allMovies, setAllMovies] = useState([])
   const [errorLoadingMovies, setErrorLoadingMovies] = useState(false)
+  const [shortFilteredMoviesList, setFilteredShortMoviesList] = useState([])
 
-  const handleFilteredMovies = (movies, searchText, checkboxShortMovies) => {
-    const moviesList = filterMovies(movies, searchText, checkboxShortMovies)
-    if (moviesList.length === 0) {
+  const handleFilteredMovies = (allMovies, searchText, checkboxShortMovies) => {
+    const filteredMoviesList = filterMovies(allMovies, searchText, checkboxShortMovies)
+    if (filteredMoviesList.length === 0) {
       setNotFoundMovies(true)
     } else {
       setNotFoundMovies(false)
     }
-    setInitialMovies(moviesList)
-    setFilteredMovies(
-      checkboxShortMovies ? filterShortMovies(moviesList) : moviesList
-    )
-    localStorage.setItem(`${currentUser.email}_movies`, JSON.stringify(moviesList))
+    setFilteredMovies(filteredMoviesList)
+    setFilteredShortMoviesList(filterShortMovies(filteredMoviesList))
+    localStorage.setItem(`${currentUser.email}_movies`, JSON.stringify(filteredMoviesList))
   }
 
-  const handleSearchText = (value) => {
-    localStorage.setItem(`${currentUser.email}_searchText`, value)
+  const handleSearchText = (searchText) => {
+    localStorage.setItem(`${currentUser.email}_searchText`, searchText)
     localStorage.setItem(`${currentUser.email}_checkboxShortMovies`, checkboxShortMovies)
 
     if (allMovies.length === 0) {
@@ -39,7 +37,7 @@ function Movies({savedMoviesList, handleSaveMovie, handleDeleteMovie, handlePrel
         .getMovies()
         .then(movies => {
           setAllMovies(movies)
-          handleFilteredMovies(optimizeMovies(movies), value, checkboxShortMovies)
+          handleFilteredMovies(optimizeMovies(movies), searchText, checkboxShortMovies)
         })
         .catch(() => {
           setErrorLoadingMovies(true)
@@ -48,15 +46,12 @@ function Movies({savedMoviesList, handleSaveMovie, handleDeleteMovie, handlePrel
           handlePreloader(false)
         })
     } else {
-      handleFilteredMovies(allMovies, value, checkboxShortMovies)
+      handleFilteredMovies(allMovies, searchText, checkboxShortMovies)
     }
   }
 
   const handleCheckboxShortMovies = () => {
     setCheckboxShortMovies(!checkboxShortMovies);
-    !checkboxShortMovies
-      ? setFilteredMovies(filterShortMovies(initialMovies))
-      : setFilteredMovies(initialMovies);
     localStorage.setItem(`${currentUser.email}_checkboxShortMovies`, !checkboxShortMovies);
   }
 
@@ -67,12 +62,8 @@ function Movies({savedMoviesList, handleSaveMovie, handleDeleteMovie, handlePrel
   useEffect(() => {
     if (localStorage.getItem(`${currentUser.email}_movies`)) {
       const movies = JSON.parse(localStorage.getItem(`${currentUser.email}_movies`))
-      setInitialMovies(movies)
-      if (localStorage.getItem(`${currentUser.email}_checkboxShortMovies`) === 'true') {
-        setFilteredMovies(filterShortMovies(movies))
-      } else {
-        setFilteredMovies(movies)
-      }
+      setFilteredMovies(movies)
+      setFilteredShortMoviesList(filterShortMovies(movies))
     }
   }, [currentUser])
 
@@ -88,7 +79,7 @@ function Movies({savedMoviesList, handleSaveMovie, handleDeleteMovie, handlePrel
           недоступен. Подождите немного и попробуйте ещё раз</div>}
       {notFoundMovies &&
         <div className={'movies__error'}>Ничего не найдено</div>}
-      {!errorLoadingMovies && <MoviesCardList movies={filteredMovies}
+      {!errorLoadingMovies && <MoviesCardList movies={checkboxShortMovies ? shortFilteredMoviesList : filteredMovies}
                                               savedMoviesList={savedMoviesList}
                                               handleSaveMovie={handleSaveMovie}
                                               handleDeleteMovie={handleDeleteMovie}

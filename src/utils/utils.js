@@ -4,15 +4,13 @@ const filterShortMovies = (movies) => {
   return movies.filter(movie => movie.duration < shortMoviesDuration);
 }
 
-
 const filterMovies = (movies, searchText, checkboxShortMovies) => {
-  const searchTextMovies = movies.filter((movie) => {
+  return movies.filter((movie) => {
     const movieLangRu = String(movie.nameRU).toLowerCase().trim();
     const movieLangEn = String(movie.nameEN).toLowerCase().trim();
     const optimizedSearchText = searchText.toLowerCase().trim();
     return movieLangRu.includes(optimizedSearchText) || movieLangEn.includes(optimizedSearchText)
   })
-  return checkboxShortMovies ? filterShortMovies(searchTextMovies) : searchTextMovies
 }
 
 const optimizeMovies = (movies) => {
