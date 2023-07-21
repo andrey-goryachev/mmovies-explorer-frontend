@@ -14,13 +14,13 @@ const desktopLagrerProps = {
 }
 
 const desktopProps = {
-  breakpoint: 1024,
+  breakpoint: 1100,
   numberVisibleCards: 15,
   numberCardsToAdd: 3
 }
 
 const tabProps = {
-  breakpoint: 768,
+  breakpoint: 840,
   numberVisibleCards: 8,
   numberCardsToAdd: 2
 }

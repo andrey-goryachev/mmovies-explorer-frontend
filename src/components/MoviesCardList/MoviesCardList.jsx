@@ -17,9 +17,14 @@ function MoviesCardList({movies, savedMoviesList, handleSaveMovie, handleDeleteM
 
   const increaseNumberMovies = () => {
     const visibleMoviesListLength = visibleMoviesList.length
-    const numberCards = visibleMoviesListLength + numberCardToAdd
+    let numberCards = visibleMoviesListLength + numberCardToAdd
     const differenceCards = movies.length - visibleMoviesListLength
-
+    const differenceLength = numberCards - maxMoviesPage
+    const divisionResult = differenceLength % numberCardToAdd
+    if (divisionResult !== 0) {
+      const addNumber = numberCardToAdd - divisionResult
+      numberCards = numberCards + addNumber
+    }
     if (differenceCards > 0) {
       const slicedMovies = movies.slice(visibleMoviesListLength, numberCards)
       setVisibleMoviesList([...visibleMoviesList, ...slicedMovies])
@@ -49,27 +54,19 @@ function MoviesCardList({movies, savedMoviesList, handleSaveMovie, handleDeleteM
   useEffect(() => {
     if (pathLocation === paths.movies) {
       if ((width > desktopProps.breakpoint) ) {
-        if (visibleMoviesList.length <= desktopLagrerProps.numberVisibleCards) {
           setMaxMoviesPage(desktopLagrerProps.numberVisibleCards);
-        }
         setNumberCardToAdd(desktopLagrerProps.numberCardsToAdd)
       }
       if (width <= desktopProps.breakpoint && width > tabProps.breakpoint) {
-        if (visibleMoviesList.length <= desktopProps.numberVisibleCards) {
           setMaxMoviesPage(desktopProps.numberVisibleCards);
-        }
         setNumberCardToAdd(desktopProps.numberCardsToAdd)
       }
       if (width <= tabProps.breakpoint && width > mobileProps.breakpoint) {
-        if (visibleMoviesList.length <= tabProps.numberVisibleCards) {
           setMaxMoviesPage(tabProps.numberVisibleCards);
-        }
         setNumberCardToAdd(tabProps.numberCardsToAdd)
       }
       if (width <= mobileProps.breakpoint && width > 0) {
-        if (visibleMoviesList.length <= mobileProps.numberVisibleCards) {
           setMaxMoviesPage(mobileProps.numberVisibleCards);
-        }
         setNumberCardToAdd(mobileProps.numberCardsToAdd)
       }
 
@@ -82,7 +79,7 @@ function MoviesCardList({movies, savedMoviesList, handleSaveMovie, handleDeleteM
       const slicedMovies = movies.slice(0, maxMoviesPage)
       setVisibleMoviesList(slicedMovies)
     }
-  }, [movies, maxMoviesPage])
+  }, [movies])
 
   return (
     <section className={'movies'}>
