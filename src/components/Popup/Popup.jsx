@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import './Popup.css'
 import Navigation from "../Navigation/Navigation";
 
-function Popup({ isPopupOpen, openPopup, closePopup }) {
+function Popup({ isPopupOpen, openPopup, closePopup, isLogged }) {
 
   useEffect(() => {
     if (!isPopupOpen) return;
@@ -25,7 +25,7 @@ function Popup({ isPopupOpen, openPopup, closePopup }) {
           type='button'
           onClick={closePopup}
         />
-        <Navigation isPopup={true} openPopup={openPopup} closePopup={closePopup}/>
+        <Navigation isPopup={isPopupOpen} openPopup={openPopup} closePopup={closePopup} isLogged={isLogged}/>
       </div>
     </div>
   );

@@ -200,6 +200,7 @@ function App() {
                       openPopup={openPopup}
                       closePopup={closePopup}
                       isLogged={isLogged}
+                      isPopup={isPopupOpen}
                     />}
                   />
                 ))
@@ -277,7 +278,7 @@ function App() {
                     element={<ErrorPage/>}
                   />
                 </Routes>
-                <Popup isPopupOpen={isPopupOpen} openPopup={openPopup} closePopup={closePopup}/>
+                <Popup isPopupOpen={isPopupOpen} openPopup={openPopup} closePopup={closePopup} isLogged={isLogged}/>
               </main>
               <Routes>
                 {footerPaths.map((path) => {

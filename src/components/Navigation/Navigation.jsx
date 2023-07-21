@@ -50,7 +50,8 @@ function Navigation({ isPopup, openPopup, closePopup, isLogged }) {
           {!isPopup && <button className={'button nav__profile-img nav__profile-img_type_burger'} type={'button'}
                                onClick={openPopup}></button>}
         </div>
-      </nav>}
+      </nav>
+      }
     </>
 
   );
