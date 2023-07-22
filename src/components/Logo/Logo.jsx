@@ -4,6 +4,7 @@ import logoPath from '../../images/logo.svg';
 import {paths} from "../../utils/conts";
 import {Link} from "react-router-dom";
 
+
 function Logo() {
   return (
     <>

@@ -10,6 +10,11 @@
     padding: 0;
 }
 
+.movie__link:hover {
+    opacity: 1;
+    cursor: auto;
+}
+
 .movie__image {
     display: block;
     width: 100%;
@@ -28,6 +33,7 @@
 }
 
 .movie__header {
+    color: #000;
     padding: 0;
     margin: 0;
     font-size: 13px;
@@ -55,6 +61,23 @@
     height: 1px;
     overflow: hidden;
     clip: rect(0 0 0 0);
+}
+
+.movie__button {
+    width: 16px;
+    height: 15px;
+    background: transparent url("../../images/movies-cross.svg") no-repeat center / cover;
+    border: none;
+}
+
+.movie__button_active {
+    display: block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 2px rgba(50, 50, 71, 0.08), 0 2px 4px rgba(50, 50, 71, 0.06);
 }
 
 .movie__visible-checkbox {
@@ -107,14 +130,18 @@
     width: 16px;
     height: 16px;
     box-shadow: none;
+    background-color: transparent;
 }
 
-.movie__button {
-    width: 16px;
-    height: 15px;
-    background: transparent url("../../images/movies-cross.svg") no-repeat center / cover;
-    border: none;
+.movie__checkbox:checked + .movie__visible-checkbox_type_cross::before {
+    background-color:transparent;
 }
+
+.movie__visible-checkbox_type_cross::before {
+    background: transparent url("../../images/movies-cross.svg") no-repeat center / cover;
+}
+
+
 
 @media screen and (max-width: 768px) {
     .movie__image {
@@ -130,9 +157,5 @@
     .movie__image {
         height: 168px;
     }
-
-    /*.movie:last-of-type + .movie__span {*/
-    /*    padding-bottom: 8px;*/
-    /*}*/
 }
 

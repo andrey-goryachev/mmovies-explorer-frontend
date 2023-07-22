@@ -1,6 +1,5 @@
 .register {
     height: 100vh;
-    /*padding: 70px 0;*/
     box-sizing: border-box;
     display: flex;
 }

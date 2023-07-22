@@ -1,31 +1,51 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './MoviesCard.css'
 import {useLocation} from "react-router-dom";
 import {paths} from "../../utils/conts";
 
 
-function MoviesCard({movie}) {
-  const {image, name, duration, checked} = movie
+function MoviesCard({movie, userSaved, handleSaveMovie, handleDeleteMovie}) {
+  const {image, nameRU, trailerLink, duration} = movie
+  const [checkboxValue, setCheckboxValue] = useState(userSaved)
 
   let location = useLocation()
   let pathLocation = location.pathname
 
+  const hours = Math.trunc(duration / 60)
+  const minutes = duration % 60
+
+  const handleCheckbox = () => {
+    if (pathLocation === paths.movies) {
+      handleSaveMovie(movie)
+    }
+    if (pathLocation === paths.savedMovies) {
+      handleDeleteMovie(movie)
+    }
+  }
+
   return (
     <li className={'movie'}>
-      <a className={'link movie__link'} href={'https://hd.kinopoisk.ru/film/49c3ffcdca24c0529efaeb46fed7bcc1?content_tab=overview'} target={'_blank'} rel="noreferrer">
-        <img className={'movie__image'} src={image} alt={`кадр из фильма ${name}`}/>
+      <a className={'link movie__link'} href={trailerLink} target={'_blank'} rel="noreferrer">
+        <img className={'movie__image'} src={image}
+             alt={`кадр из фильма ${nameRU}`}/>
         <div className={'movie__container-header'}>
-          <h2 className={'movie__header'}>{name}</h2>
+          <h2 className={'movie__header'}>{nameRU}</h2>
           <label className={'movie__label'}>
-            <input className={'movie__checkbox'} type={"checkbox"} defaultChecked={checked}/>
-            {/*<span className={`movie__visible-checkbox ${(pathLocation === paths.savedMovies) && 'movie__visible-checkbox_type_cross'}`}></span>*/}
-            {(pathLocation === paths.savedMovies)
-              ? <button className={'button movie__button'} type={'button'}></button>
-              : <span className={`movie__visible-checkbox`}></span>
-            }
+            <input className={'movie__checkbox'}
+                   type={"checkbox"}
+                   checked={checkboxValue}
+                    onChange={() => {
+                      setCheckboxValue(!checkboxValue)
+                    }}
+            />
+              <span
+                className={`movie__visible-checkbox ${(pathLocation === paths.savedMovies) && 'movie__visible-checkbox_type_cross'}`}
+                onClick={handleCheckbox}
+              >
+              </span>
           </label>
         </div>
-        <span className={'movie__span'}>{duration}</span>
+        <span className={'movie__span'}>{`${hours === 0 ? '' : `${hours}ч`}${minutes}м`}</span>
       </a>
     </li>
   );
